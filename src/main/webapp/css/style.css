@@ -1,0 +1,453 @@
+:root {
+    --primary: #1d4ed8;
+    --primary-dark: #1e40af;
+    --danger: #b91c1c;
+    --text: #1f2933;
+    --muted: #616e7c;
+    --border: #d9e2ec;
+    --surface: #ffffff;
+    --background: #f5f7fa;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--text);
+    background: var(--background);
+}
+
+a {
+    color: var(--primary);
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+    color: #fff;
+    background: #102a43;
+}
+
+.topbar a,
+.topbar .link {
+    color: #fff;
+}
+
+.topbar nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.brand {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+h1 {
+    margin: 0 0 1rem;
+    font-size: 1.6rem;
+    text-align: center;
+}
+
+h2 {
+    margin: 0 0 0.75rem;
+    font-size: 1.15rem;
+}
+
+.card {
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.narrow {
+    max-width: 420px;
+    margin-inline: auto;
+}
+
+.medium {
+    max-width: 760px;
+    margin-inline: auto;
+}
+
+.home {
+    max-width: 480px;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.toolbar,
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.actions {
+    justify-content: center;
+    margin: 1rem 0 0;
+}
+
+.load-more {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.section-header h2 {
+    margin: 0;
+}
+
+main:not(:has(input.quantity:not(:placeholder-shown))) .confirm {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.spacer {
+    flex: 1;
+}
+
+.button,
+button {
+    display: inline-block;
+    padding: 0.45rem 0.9rem;
+    font: inherit;
+    color: var(--text);
+    text-decoration: none;
+    cursor: pointer;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+}
+
+.button:hover,
+button:hover {
+    border-color: var(--primary);
+}
+
+.primary {
+    color: #fff;
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.primary:hover {
+    background: var(--primary-dark);
+}
+
+.danger {
+    color: var(--danger);
+}
+
+button.link {
+    padding: 0;
+    text-decoration: underline;
+    background: none;
+    border: none;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 0.45rem 0.6rem;
+    font: inherit;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+}
+
+input:focus,
+textarea:focus {
+    outline: 2px solid #93c5fd;
+    border-color: var(--primary);
+}
+
+.form label {
+    display: block;
+    margin-bottom: 0.85rem;
+    font-weight: 600;
+}
+
+.form label input,
+.form label textarea {
+    margin-top: 0.25rem;
+    font-weight: 400;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1rem;
+}
+
+.form-grid .wide {
+    grid-column: 1 / -1;
+}
+
+.required::after {
+    content: " *";
+    color: var(--danger);
+}
+
+.hint {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--muted);
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+    max-width: 640px;
+    margin: 0 auto 1rem;
+}
+
+.search label {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+table {
+    width: 100%;
+    margin-bottom: 1rem;
+    border-collapse: collapse;
+    background: var(--surface);
+    border: 1px solid var(--border);
+}
+
+th,
+td {
+    padding: 0.55rem 0.75rem;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--border);
+}
+
+thead th,
+tfoot th {
+    background: #f0f4f8;
+}
+
+.num {
+    text-align: right;
+    white-space: nowrap;
+}
+
+td input {
+    width: 7rem;
+}
+
+td input.quantity {
+    width: 5rem;
+}
+
+td input.notes {
+    width: 10rem;
+}
+
+.code {
+    white-space: nowrap;
+}
+
+tr.selected {
+    background: #eff6ff;
+}
+
+.empty {
+    color: var(--muted);
+    text-align: center;
+}
+
+.details {
+    width: auto;
+    min-width: 50%;
+}
+
+main > .details {
+    margin-inline: auto;
+}
+
+.details th {
+    width: 11rem;
+    background: #f0f4f8;
+}
+
+.multiline {
+    white-space: pre-line;
+}
+
+.muted {
+    color: var(--muted);
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: 1rem;
+    align-items: start;
+}
+
+.detail-grid .details {
+    width: 100%;
+}
+
+.gallery {
+    margin: 0;
+    text-align: center;
+}
+
+.gallery img {
+    max-width: 100%;
+    border-radius: 6px;
+}
+
+.gallery figcaption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.75rem;
+}
+
+.no-image {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 4 / 3;
+    color: var(--muted);
+    background: #f0f4f8;
+    border-radius: 6px;
+}
+
+.card > :last-child {
+    margin-bottom: 0;
+}
+
+main:has(.invoice) {
+    max-width: calc(186mm + 5.5rem + 2px);
+}
+
+.invoice-header {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.invoice-header h2 {
+    margin-bottom: 0.25rem;
+    font-size: 1.4em;
+}
+
+.invoice .details {
+    width: 100%;
+    margin-bottom: 1.25rem;
+}
+
+.invoice {
+    font-size: 12px;
+}
+
+.invoice th,
+.invoice td {
+    padding: 0.4em 0.5em;
+}
+
+.invoice table:not(.details) {
+    font-size: 11px;
+}
+
+.invoice .details th {
+    width: 1%;
+    white-space: nowrap;
+}
+
+.signatures {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.signatures strong,
+.signatures small {
+    display: block;
+}
+
+.signatures small {
+    font-style: italic;
+    color: var(--muted);
+}
+
+.signatures p {
+    margin: 4.5rem 0 0;
+}
+
+@media (max-width: 720px) {
+    .detail-grid,
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .search {
+        flex-wrap: wrap;
+    }
+}
+
+@page {
+    size: A4 portrait;
+    margin: 12mm;
+}
+
+@media print {
+    body {
+        background: #fff;
+    }
+
+    .topbar,
+    main > h1,
+    .no-print {
+        display: none;
+    }
+
+    main {
+        max-width: none;
+        padding: 0;
+    }
+
+    .card {
+        border: none;
+        padding: 0;
+    }
+}

@@ -1,0 +1,82 @@
+<%@ page import="java.math.BigDecimal,java.text.DecimalFormat,java.text.DecimalFormatSymbols" %>
+<%@ page import="java.net.URLEncoder,java.nio.charset.StandardCharsets" %>
+<%@ page import="java.util.Locale,java.util.Objects" %>
+<%!
+    static final int PAGE_SIZE = 20;
+
+    static String escape(String value) {
+        if (value == null) {
+            return "";
+        }
+
+        final StringBuilder html = new StringBuilder();
+        for (char c : value.toCharArray()) {
+            switch (c) {
+                case '&' -> html.append("&amp;");
+                case '<' -> html.append("&lt;");
+                case '>' -> html.append("&gt;");
+                case '"' -> html.append("&quot;");
+                case '\'' -> html.append("&#39;");
+                default -> html.append(c);
+            }
+        }
+
+        return html.toString();
+    }
+
+    static String cell(String value) {
+        return value == null || value.isBlank() ? "-" : escape(value);
+    }
+
+    static String alert(String message) {
+        if (message == null) {
+            return "";
+        }
+
+        final StringBuilder js = new StringBuilder();
+        for (final char c : message.toCharArray()) {
+            switch (c) {
+                case '\\' -> js.append("\\\\");
+                case '"' -> js.append("\\\"");
+                case '\n' -> js.append("\\n");
+                case '<' -> js.append("\\x3C");
+                default -> js.append(c);
+            }
+        }
+
+        return "<script>addEventListener(\"load\", () => requestAnimationFrame(() => setTimeout(() => alert(\""
+                + js + "\"))));</script>";
+    }
+
+    static String formatId(long id) {
+        return String.format("%06d", id);
+    }
+
+    static String money(BigDecimal value) {
+        return new DecimalFormat("#,##0.00", DecimalFormatSymbols.getInstance(Locale.US)).format(value);
+    }
+
+    static String text(String value) {
+        return value == null || value.isBlank() ? null : value.strip();
+    }
+
+    static long toId(String value) {
+        try {
+            return Long.parseLong(Objects.requireNonNullElse(value, "").strip());
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+
+    static int toPositiveInt(String value) {
+        try {
+            return Math.max(Integer.parseInt(Objects.requireNonNullElse(value, "").strip()), 0);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
+    static int toPage(String value) {
+        return Math.min(toPositiveInt(value), Integer.MAX_VALUE / PAGE_SIZE - 1);
+    }
+%>

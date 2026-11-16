@@ -1,0 +1,13 @@
+<%@ include file="/WEB-INF/jspf/helpers.jspf" %>
+<header class="topbar">
+    <a class="brand" href="<%= request.getContextPath() %>/">Garaga</a>
+    <nav>
+        <% if (session.getAttribute("member") != null) { %>
+            <form method="post" action="<%= request.getContextPath() %>/member/DoLogout7.jsp">
+                <button type="submit" class="link">Logout</button>
+            </form>
+        <% } else { %>
+            <a href="<%= request.getContextPath() %>/member/UILogin7.jsp">Login</a>
+        <% } %>
+    </nav>
+</header>
