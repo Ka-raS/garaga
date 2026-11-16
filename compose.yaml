@@ -1,0 +1,36 @@
+name: garaga
+
+services:
+  app:
+    build: .
+    env_file: .env
+    ports:
+      - "${SERVER_ADDRESS}:${SERVER_PORT}:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  test:
+    build:
+      context: .
+      target: build
+    profiles:
+      - test
+    env_file: .env
+    command: mvn -B test
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:18.6
+    env_file: .env
+    healthcheck:
+      test: pg_isready -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"
+      interval: 3s
+      retries: 20
+    volumes:
+      - pgdata:/var/lib/postgresql
+
+volumes:
+  pgdata:
